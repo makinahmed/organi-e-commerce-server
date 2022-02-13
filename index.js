@@ -18,6 +18,7 @@ async function run() {
     const database = client.db("organi-shop-e-commerce");
     const featureCollection = database.collection("feature");
     const popularProductCollection = database.collection("popularProduct");
+    const blogCollection = database.collection("blog");
 
     // GET Features
 
@@ -26,8 +27,17 @@ async function run() {
       const features = await cursor.toArray();
       res.send(features);
     });
+    // popular products
     app.get("/popularProduct", async (req, res) => {
       const cursor = popularProductCollection.find({});
+      const features = await cursor.toArray();
+      res.send(features);
+    });
+    
+    // blog
+
+    app.get("/blog", async (req, res) => {
+      const cursor = blogCollection.find({});
       const features = await cursor.toArray();
       res.send(features);
     });
