@@ -19,6 +19,7 @@ async function run() {
     const featureCollection = database.collection("feature");
     const popularProductCollection = database.collection("popularProduct");
     const blogCollection = database.collection("blog");
+    const shopCollection = database.collection("shop");
 
     // GET Features
 
@@ -41,6 +42,14 @@ async function run() {
       const features = await cursor.toArray();
       res.send(features);
     });
+
+    // shop
+
+    app.get("/shop",async(req,res)=>{
+      const cursor = shopCollection.find({})
+      const shop = await cursor.toArray()
+      res.send(shop)
+    })
   } finally {
     // await client.close();
   }
